@@ -4,6 +4,7 @@ import { z } from "zod";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { registerExtendedTools } from "./extended-tools.mjs";
 
 const ROOT = path.resolve(process.env.HANDSOFF_ROOT || "/home/ubuntu/work");
 const BLOCKED = new Set(["sudo","su","passwd","mkfs","mount","umount","fdisk","dd","shutdown","reboot","poweroff"]);
@@ -82,4 +83,5 @@ server.registerTool("run_process", {
   return { content: [{ type: "text", text: JSON.stringify(result) }], isError: result.code !== 0 };
 });
 
+registerExtendedTools(server);
 await server.connect(new StdioServerTransport());
