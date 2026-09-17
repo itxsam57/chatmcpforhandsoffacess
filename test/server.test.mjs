@@ -16,9 +16,11 @@ test("tools work and root escape is rejected", async () => {
   await client.connect(transport);
   const listed = await client.listTools();
   assert.deepEqual(listed.tools.map(t => t.name).sort(), [
-    "get_file_info","kill_process","list_directory","list_processes","move_file",
-    "read_file","read_process_output","run_process","search_files","start_process",
-    "write_file","write_process_input"
+    "browser_click","browser_keypress","browser_open","browser_screenshot","browser_scroll","browser_type",
+    "close_window","desktop_click","desktop_keypress","desktop_screenshot","desktop_scroll","desktop_type",
+    "docx_read","docx_replace","excel_read","excel_write","focus_window","get_file_info","kill_process",
+    "list_directory","list_processes","list_windows","move_file","pdf_read","read_file",
+    "read_process_output","run_process","search_files","start_process","write_file","write_process_input"
   ]);
   await client.callTool({ name: "write_file", arguments: { path: "hello.txt", content: "hello" } });
   const read = await client.callTool({ name: "read_file", arguments: { path: "hello.txt" } });

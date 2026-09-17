@@ -5,6 +5,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { registerExtendedTools } from "./extended-tools.mjs";
+import { registerGuiTools } from "./gui-tools.mjs";
+import { registerDocumentTools } from "./document-tools.mjs";
 
 const ROOT = path.resolve(process.env.HANDSOFF_ROOT || "/home/ubuntu/work");
 const BLOCKED = new Set(["sudo","su","passwd","mkfs","mount","umount","fdisk","dd","shutdown","reboot","poweroff"]);
@@ -84,4 +86,6 @@ server.registerTool("run_process", {
 });
 
 registerExtendedTools(server);
+registerGuiTools(server);
+registerDocumentTools(server, ROOT);
 await server.connect(new StdioServerTransport());
