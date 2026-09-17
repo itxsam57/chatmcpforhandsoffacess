@@ -24,7 +24,7 @@ const writeTarget = async input => {
   return path.join(parent, path.basename(target));
 };
 const server = new McpServer(
-  { name: "hands-off-access", version: "0.1.0" },
+  { name: "hands-off-access", title: "Hands-Off Access", version: "0.1.1", icons: [{ src: "https://raw.githubusercontent.com/itxsam57/chatmcpforhandsoffacess/main/assets/hands-off-access-logo.png", mimeType: "image/png", sizes: ["512x512"] }] },
   { instructions: "Operate only inside HANDSOFF_ROOT. Inspect before writes. Never expose secrets." }
 );
 
